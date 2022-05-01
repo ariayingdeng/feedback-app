@@ -1,5 +1,6 @@
 import FeedbackItem from './FeedbackItem'
 import PropTypes from 'prop-types'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function FeedbackList({ feedback, handleDelete }) {
   if (!feedback || feedback.length === 0) {
