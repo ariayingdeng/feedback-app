@@ -7,6 +7,8 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import AboutPage from './pages/AboutPage'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import AboutIconLink from './components/AboutIconLink'
+import Post from './components/Post'
 
 function App() {
   const [feedback, setFeedback] = useState(FeedbackData)
@@ -43,7 +45,9 @@ function App() {
             }
           ></Route>
           <Route path='/about' element={<AboutPage />} />
+          <Route path='/post/:name/:id' element={<Post />} />
         </Routes>
+        <AboutIconLink />
       </div>
     </Router>
   )
