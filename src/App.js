@@ -45,7 +45,8 @@ function App() {
             }
           ></Route>
           <Route path='/about' element={<AboutPage />} />
-          <Route path='/post/:name/:id' element={<Post />} />
+          {/* <Route path='/post/:name/:id' element={<Post />} /> */}
+          <Route path='/post/*' element={<Post />} />
         </Routes>
         <AboutIconLink />
       </div>
