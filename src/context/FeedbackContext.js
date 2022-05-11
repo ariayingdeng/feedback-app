@@ -22,25 +22,53 @@ export const FeedbackProvider = ({ children }) => {
     },
   ])
 
+  const [itemEdit, setItemEdit] = useState({
+    item: {},
+    edit: false,
+  })
+
+  // Delete a feedback
   const deleteFeedback = (id) => {
     if (window.confirm('Are you sure to delete?')) {
       setFeedback(feedback.filter((item) => item.id !== id))
     }
   }
 
+  // Add a new feedback
   const addFeedback = (newFeedback) => {
     newFeedback.id = uuidv4()
-    if (window.confirm('Are you sure to submit your review?')) {
-      setFeedback([newFeedback, ...feedback]) //...anArray: copy all objects from anArray
-    }
+    setFeedback([newFeedback, ...feedback]) //...anArray: copy all objects from anArray
+  }
+
+  // Update a feedback
+  const updateFeedback = (id, newItem) => {
+    // console.log(id, newItem)
+    setFeedback(
+      feedback.map((item) => (item.id === id ? { ...item, ...newItem } : item))
+    )
+    setItemEdit({
+      item: {},
+      edit: false,
+    })
+  }
+
+  // Edit feedback item
+  const editFeedback = (item) => {
+    setItemEdit({
+      item,
+      edit: true,
+    })
   }
 
   return (
     <FeedbackContext.Provider
       value={{
         feedback,
+        itemEdit,
         deleteFeedback,
         addFeedback,
+        editFeedback,
+        updateFeedback,
       }}
     >
       {children}
